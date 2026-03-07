@@ -16,8 +16,6 @@ export default function ChatWidget({
   welcomeMessage = "Hello! How can I help you today?"
 }: ChatWidgetProps) {
 
-  console.log(`Here: ${uuid()}`)
-
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { id: uuid(), role: "bot", text: welcomeMessage }
@@ -49,7 +47,7 @@ export default function ChatWidget({
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { id: uuid(), role: "user", text: input };
+    const userMessage:Message = { id: uuid(), role: "user", text: input };
 
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
@@ -80,7 +78,7 @@ export default function ChatWidget({
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-3 space-y-3">
-            {messages.map((msg, index) => (
+            {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`max-w-[75%] px-3 py-2 rounded-lg text-sm ${

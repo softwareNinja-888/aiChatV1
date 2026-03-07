@@ -5,6 +5,13 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),tailwindcss()],
-
+  build: {
+      lib: {
+        entry: "./src/components/Widget.tsx",
+        name: "ChatWidget",
+        fileName: "chat-widget",
+        formats: ["iife"]
+      }
+    }
 
 })
