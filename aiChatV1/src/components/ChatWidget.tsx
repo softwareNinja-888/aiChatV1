@@ -27,7 +27,8 @@ export default function ChatWidget({
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (widgetRef.current && !widgetRef.current.contains(event.target as Node)) {
+      const path = event.composedPath();
+      if (widgetRef.current && !path.includes(widgetRef.current)) {
         setOpen(false);
       }
     }
@@ -62,7 +63,7 @@ export default function ChatWidget({
   };
 
   return (
-    <div ref={widgetRef} className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end">
+    <div ref={widgetRef} className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[99999] flex flex-col items-end">
 
       {/* Chat Window */}
       {open && (
@@ -126,3 +127,5 @@ export default function ChatWidget({
     </div>
   );
 }
+
+// https://creator.voiceflow.com/share/69aea698cc5f4ca3d1baa125/development
